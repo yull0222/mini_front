@@ -1,5 +1,10 @@
+import News from "./newsfetchingcomponents/News";
+
+
 export default function App() {
   return (
-    <div>hello there</div>
+    <div className="w-full h-full">
+      <News />
+    </div>
   )
 }
