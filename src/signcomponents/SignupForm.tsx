@@ -1,35 +1,31 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-export default function LoginForm() {
+export default function SignupForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
-  const loginHandler = async (e: React.FormEvent) => {
+  const signupHandler = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await fetch("/auth/signin", {
+    const res = await fetch("/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
     if (res.ok) {
-      const token = await res.text();
-      localStorage.setItem("token", token);
-      alert("로그인 성공");
-      navigate("/");
+      alert("회원가입 성공! 로그인해주세요");
+      window.location.href = "/login";
     } else {
-      alert("로그인 실패");
+      alert("회원가입 실패");
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <form
-        onSubmit={loginHandler}
+        onSubmit={signupHandler}
         className="bg-white shadow-lg rounded-xl px-8 py-10 w-full max-w-sm"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">로그인</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-green-600">회원가입</h2>
         <input
           type="text"
           placeholder="아이디"
@@ -46,14 +42,14 @@ export default function LoginForm() {
         />
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
         >
-          로그인
+          가입하기
         </button>
         <p className="text-sm mt-4 text-center">
-          계정이 없으신가요?{" "}
-          <a href="/signup" className="text-blue-500 hover:underline">
-            회원가입
+          이미 계정이 있으신가요?{" "}
+          <a href="/login" className="text-blue-500 hover:underline">
+            로그인
           </a>
         </p>
       </form>
