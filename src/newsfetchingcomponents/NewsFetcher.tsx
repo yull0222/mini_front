@@ -38,13 +38,15 @@ export default function NewsFetcher({ uriEncodedString }: newsFetcherProps) {
   };
 
   useEffect(() => {
-    fetchHandler();
-  }, []);
+  if (!uriEncodedString) return;
+  fetchHandler();
+}, [uriEncodedString]);
 
   //원시적인 카드 만들어서 화면에 뿌리기
   const tags: ReactNode = news
     ? news.map((item: newsInfo) => <NewsCard data={item} key={item.title} />)
     : <div></div>;
     
-  return <div className="w-4/5 grid grid-cols-3">{tags}</div>;
+  return <div className="w-11/12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+    {tags}</div>;
 }

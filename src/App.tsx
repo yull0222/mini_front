@@ -1,11 +1,17 @@
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import News from "./newsfetchingcomponents/News";
-// import Login from "./signcomponents/Login";
 
-
-export default function App() {
+function App() {
   return (
-    <div className="w-full h-full mt-30 flex justify-center items-center">
-      <News />
+    <div className="flex flex-col min-h-screen bg-gray-100">
+      <Header />
+      <main className="flex-grow">
+        <News />
+      </main>
+      <Footer />
     </div>
-  )
+  );
 }
+
+export default App;
